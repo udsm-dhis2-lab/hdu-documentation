@@ -3,19 +3,24 @@ name: Deploy Docusaurus to GitHub Pages
 on:
   push:
     branches:
-      - main  # Trigger on push to the 'main' branch
+      - main  # Deploys on pushes to the 'main' branch
 
+# Sets permissions needed to write to the repository and Pages
 permissions:
   contents: write
   pages: write
   id-token: write
 
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
-  deployment:
-    name: Deploy to GitHub Pages
+  build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -24,13 +29,14 @@ jobs:
           node-version: 18
           cache: 'npm'
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm ci
 
       - name: Build Docusaurus
         run: npm run build
 
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
