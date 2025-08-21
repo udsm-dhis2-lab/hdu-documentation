@@ -2,46 +2,41 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Health Data Universal API (HDU API)
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Welcome to the **HDU API Documentation**.
 
-## Getting Started
+The Health Data Universal API (HDU API) provides a standardized and secure way to **exchange health data** between different systems such as **Electronic Medical Records (EMRs), Electronic Health Records (EHRs), laboratory systems, and shared health record repositories**.
 
-Get started by **creating a new site**.
+This documentation is designed to help developers, system integrators, and health information managers understand how to connect, send, and retrieve health data using the HDU API.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+---
 
-### What you'll need
+## Objectives
+- Enable **interoperability** between multiple health systems.
+- Provide **standardized API messages** and formats for data exchange.
+- Ensure **data quality, security, and compliance** with health standards.
+- Support **scalable integration** across health facilities.
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+---
 
-## Generate a new site
+## Who Should Use This Documentation?
+- **Developers** → to implement the API in EMR/EHR and lab systems.
+- **System Analysts** → to understand architecture, use cases, and workflows.
+- **Health IT Administrators** → to manage integration and monitor data flows.
 
-Generate a new Docusaurus site using the **classic template**.
+---
 
-The classic template will automatically be added to your project after you run the command:
+## How to Navigate
+This documentation is organized into chapters:
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+- **Chapter 1 – Use Cases** → Architecture, workflows, and interacting systems.
+- **Chapter 2 – Data Exchange Specifications** → API messages, templates, and standardized codes.
+- **Chapter 3 – Client Registry** → Saving and retrieving client information.
+- **Chapter 4 – Shared Health Records** → Managing shared records between systems.
+- **Chapter 5 – Laboratory Data** → Exchanging lab data securely.
+- **HTTP Error Codes** → Common errors and responses.
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+---
 
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+✨ Start with [Use Cases](chapter1/Health-facility-to-hdu) to understand how HDU API fits into the health ecosystem.
