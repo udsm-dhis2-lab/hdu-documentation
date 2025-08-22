@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # Health Data Universal API (HDU API)
 
 Welcome to the **HDU API Documentation**.
@@ -38,5 +34,3 @@ This documentation is organized into chapters:
 - **HTTP Error Codes** → Common errors and responses.
 
 ---
-
-✨ Start with [Use Cases](chapter1/Health-facility-to-hdu) to understand how HDU API fits into the health ecosystem.
