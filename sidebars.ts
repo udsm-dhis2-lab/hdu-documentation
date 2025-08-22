@@ -1,5 +1,6 @@
 module.exports = {
   docsSidebar: [
+      'intro',
     {
       type: 'category',
       label: 'Chapter 1 Use cases',
@@ -11,8 +12,8 @@ module.exports = {
       type: 'category',
       label: 'Chapter 2 Data exchange specifications',
       items: [
+          'Chapter2/Api-use-case-info',
           'Chapter2/Apis-messages',
-        'Chapter2/Use-case-info',
         'Chapter2/Apis-url',
         'Chapter2/Standardized-codes',
       ],
