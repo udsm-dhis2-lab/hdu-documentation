@@ -34,15 +34,7 @@ const config: Config = {
             'https://github.com/udsm-dhis2-lab/hdu-documentation/edit/main/',
           routeBasePath: 'docs',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          editUrl:
-            'https://github.com/udsm-dhis2-lab/hdu-documentation/edit/main/',
-        },
+        blog: false, // Disable blog completely
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -65,30 +57,26 @@ const config: Config = {
           position: 'left',
           label: 'Documentation',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
-        {
-          href: 'https://github.com/udsm-dhis2-lab/hdu-documentation',
-          label: 'GitHub',
-          position: 'right',
-        },
+        // Blog removed
+        // GitHub link removed
       ],
     },
-  footer: {
-    style: 'dark',
-    links: [
-      {
-        title: 'Docs',
-        items: [
-          {
-            label: 'Getting Started',
-            to: '/docs/intro',
-          },
-        ],
-      },
-    ],
-    copyright: `Copyright © ${new Date().getFullYear()} HDU Project. Built with Docusaurus.`,
-  },
-prism: {
+    footer: {
+      style: 'dark',
+      links: [
+        {
+          title: 'Docs',
+          items: [
+            {
+              label: 'Getting Started',
+              to: '/docs/intro',
+            },
+          ],
+        },
+      ],
+      copyright: `Copyright © ${new Date().getFullYear()} HDU Project. Built with Docusaurus.`,
+    },
+    prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
