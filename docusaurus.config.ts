@@ -11,8 +11,8 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'https://udsm-dhis2-lab.github.io/',
-  baseUrl: '/hdu-documentation/',
+  url: 'https://hdu.moh.go.tz/',
+  baseUrl: '/documentation/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -68,7 +68,7 @@ const config: Config = {
       title: 'HDU Documentation',
       logo: {
         alt: 'HDU',
-        src: 'img/logo.svg',
+        src: 'img/coat-of-arm.png',
       },
       items: [
         {
@@ -124,7 +124,7 @@ const config: Config = {
         //   ],
         // },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} UDSM DHIS2 Lab - HDU`,
+      copyright: `Copyright © ${new Date().getFullYear()} MoH Tanzania`,
     },
     prism: {
       theme: prismThemes.github,
