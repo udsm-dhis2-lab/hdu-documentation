@@ -62,8 +62,20 @@ EMR/EHR systems generate data using standardized Data Templates. These templates
 
 ## Authentication
 
-All HDU API endpoints are secured using **Basic Authentication**.
+All HDU API endpoints are secured to ensure authorized access to health data. Integrating systems are required to authenticate every request before interacting with the API.
 
-Authentication credentials are issued to integrating systems and must be included in the request headers for every API call.
+Currently, the HDU API uses **Basic Authentication**. Credentials are issued to each integrating system and must be included in the request headers for every API call.
+
+### Supported Authentication Methods
+
+The HDU API is designed to support multiple authentication mechanisms, including:
+
+- Basic Authentication  
+- Token-based Authentication  
+- Bearer Authentication  
+- Certificate-based Authentication  
+
+At present, **Basic Authentication** is the active and officially supported method for all integrations. Other authentication mechanisms may be introduced in future releases.
+
 
 

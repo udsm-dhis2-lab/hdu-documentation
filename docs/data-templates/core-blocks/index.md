@@ -32,11 +32,11 @@ Core blocks are mandatory or conditionally mandatory across most workflows and a
     └── report-details
 ```
 
-# All Blocks that i do not know where to place them
+## Data Template Related Block
 
-# Template Details (`templateDetails`)
+## Template Details (`templateDetails`)
 
-## Overview
+### Overview
 
 The **Template Details** block defines the context, standards, and workflow identity under which the entire data payload is created and exchanged.
 
@@ -50,7 +50,7 @@ This block **must be present once at the root level of the payload**.
 
  
 
-## Object Structure (Conceptual)
+### Object Structure (Conceptual)
 
 ```text
 templateDetails
@@ -66,9 +66,9 @@ templateDetails
 
  
 
-## Parameters
+### Parameters
 
-### `templateDetails`
+#### `templateDetails`
 
 * **Data type:** `object`  
 * **Description:**  
@@ -76,7 +76,7 @@ templateDetails
   The following parameters are defined within this object.
  
 
-#### `code`
+##### `code`
 
 * **Data type:** `string`  
 * **Description:**  
@@ -86,7 +86,7 @@ templateDetails
 
  
 
-#### `id`
+##### `id`
 
 * **Data type:** `string`  
 * **Description:**  
@@ -96,7 +96,7 @@ templateDetails
 
  
 
-#### `name`
+##### `name`
 
 * **Data type:** `string`  
 * **Description:**  
@@ -106,9 +106,9 @@ templateDetails
 
  
 
-## Coding Versions
+### Coding Versions
 
-#### `codingVersions`
+##### `codingVersions`
 
 * **Data type:** `object`  
 * **Description:**  
@@ -132,7 +132,7 @@ templateDetails
 
  
 
-## Workflow Information
+### Workflow Information
 
 #### `workflow`
 
@@ -142,7 +142,7 @@ templateDetails
   The following parameter is defined within this object.
  
 
-##### `uuid`
+###### `uuid`
 
 * **Data type:** `string`  
 * **Example value:**  
@@ -150,7 +150,7 @@ templateDetails
 
  
 
-## Example JSON
+### Example JSON
 
 ```json
 {
@@ -167,3 +167,60 @@ templateDetails
     }
   }
 }
+```
+
+
+## Report Details (`reportDetails`)
+
+### Overview
+
+The **Report Details** block captures meta-information about reporting and submission of the data payload. It supports traceability, auditing, and synchronization across systems such as LIMS, EMR, DHIS2, registries, and national reporting platforms.
+
+It ensures that:
+
+- The exact reporting timestamp is known.
+- Submitted data can be audited and reconciled.
+- Systems consuming the payload understand when the report was officially generated or transmitted.
+
+This block is typically populated once per payload.
+
+
+
+### Object Structure (Conceptual)
+
+```text
+reportDetails
+└── reportingDateTime
+```
+
+### Parameters
+
+#### `reportDetails`
+
+* **Data type:** `object`  
+* **Description:**  
+  Root container holding reporting metadata for the payload.  
+* **Usage note:**  
+  Should be included once at the root level to support reporting timelines and system audits.
+
+
+
+##### `reportingDateTime`
+
+* **Data type:** `date-time`  
+* **Description:**  
+  The exact date and time when the data payload was reported, submitted, or transmitted to the receiving system.  
+* **Usage note:**  
+  - Should follow **ISO 8601** format  
+  - Used for reporting timeliness, synchronization, and reconciliation  
+* **Example value:**  
+  `2024-08-07T00:00:00Z`
+
+### Example JSON
+```json
+{
+  "reportDetails": {
+    "reportingDateTime": "2024-08-07T00:00:00Z"
+  }
+}
+```
