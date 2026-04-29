@@ -1,173 +1,87 @@
-# Health Data Universal (HDU)
+# About HDU
 
-## Introduction
 
-The **Health Data Universal (HDU)** is a national interoperability platform designed to enable seamless data exchange between facility-level health systems and national health information systems in Tanzania.
 
-It was developed to address long-standing challenges of fragmented digital health systems, where:
+Health Data Universal (HDU) is a national interoperability platform developed to enable seamless exchange of health data between healthcare facilities and national health information systems in Tanzania.
 
-- Electronic Medical Records (EMRs)  
-- Laboratory Information Systems (LIMS)  
-- Other client-level applications  
+The platform allows digital health systems used at healthcare facilities such as **Electronic Medical Records (EMR)**, **Electronic Health Records (EHR)**, and **Laboratory Information Systems**—to securely transmit standardized health data to national systems including the **Health Management Information System (HMIS)** implemented through **DHIS2** and other public health platforms.
 
-operate in silos using different data standards, codes, and reporting structures.
+By enabling structured data exchange, HDU supports improved reporting, data quality, and timely access to health information for decision-making.
 
-This fragmentation limited the effective use of health data for:
 
-- Routine health reporting  
-- Disease surveillance  
-- Program monitoring  
-- Evidence-based decision-making  
 
-HDU provides a secure, standards-based integration layer that unifies these systems and automates data flow to national platforms such as **HMIS DHIS2** and **eIDSR**.
+## The Digital Health Landscape in Tanzania
 
+Tanzania has made significant investments in digital health systems across healthcare facilities and national programs. These include:
 
+- **Electronic Medical Record (EMR)** systems in hospitals and health facilities  
+- The national **Health Management Information System (HMIS)** implemented using **DHIS2**  
+- Disease surveillance systems such as **eIDSR**  
+- Facility and referral management systems  
 
-## Why HDU Was Created
+These platforms have improved data capture, reporting timeliness, and monitoring of healthcare services.
 
-Over the past years, Tanzania has scaled multiple digital health systems across public and private health facilities. While these systems improved clinical data capture, they introduced new interoperability challenges:
+However, many of these systems were developed independently and operate using different data structures and standards.
 
-- Different coding systems for diagnoses, laboratory tests, and services  
-- Manual mapping of indicators and reports  
-- Repeated data aggregation at facility level  
-- High risk of errors and data duplication  
-- Delayed routine and surveillance reporting  
 
-To overcome these challenges, HDU was developed as a centralized interoperability mechanism to:
 
-- Standardize data exchange  
-- Enforce national coding standards  
-- Improve data quality and completeness  
-- Reduce reporting burden  
-- Support real-time and automated reporting  
+## The Challenge: Fragmented Health Information Systems
 
+Despite the availability of multiple digital health systems, health data often remained fragmented across platforms.
 
+Common challenges included:
 
-## What Is the HDU API?
+- Different coding standards for diagnoses, laboratory tests, and services  
+- Inconsistent patient identifiers across systems  
+- Manual aggregation of facility data for national reporting  
+- Repeated mapping of indicators between systems  
+- Limited real-time access to surveillance data  
 
-The **HDU API** is the technical backbone of the HDU platform. It enables secure data sharing between health facilities and national systems using standardized data templates.
+These challenges increased the reporting burden on health workers and affected the quality and timeliness of national health statistics.
 
-The API supports data exchange from:
 
-- Public health facilities  
-- Private health facilities  
-- Hospitals  
-- Laboratories  
-- Other client-level health systems  
 
+## The Need for an Interoperability Platform
 
+To address these challenges, a centralized interoperability approach was required.
 
-## Core Modules of the HDU Platform
+Instead of replacing existing systems, the goal was to:
 
-The HDU API consists of four main modules:
+- Allow healthcare systems to remain operationally independent  
+- Standardize how health data is exchanged between systems  
+- Improve consistency and quality of health information  
+- Automate reporting to national health systems  
+- Support real-time disease surveillance and monitoring  
 
-### 1. Client Registry (CR)
+This vision led to the creation of the **Health Data Universal (HDU)** platform.
 
-- Registers clients across health facilities  
-- Supports unique client identification  
-- Reduces duplication of patient records  
 
-### 2. Shared Health Records (SHR)
 
-- Stores patient-level health data  
-- Enables retrieval across facilities  
-- Supports continuity of care  
+## Role of HDU in the Digital Health Ecosystem
 
-### 3. Integration Module
+HDU acts as a bridge between facility-level systems and national health information platforms.
 
-- Receives standardized data templates  
-- Validates payloads  
-- Applies code mapping and business rules  
-- Routes data to beneficiary systems  
+![Figure 1: HDU Conceptual Model](hdu1.png)
 
-### 4. Dashboard Module
+Healthcare systems generate structured health data which is transmitted through interoperability services and processed by the **HDU platform** before being shared with national systems.
 
-- Monitors data exchanges in real time  
-- Tracks successes and failures  
-- Supports operational oversight  
+This enables:
 
+- Automated reporting  
+- Standardized health data exchange  
+- Improved interoperability between health systems  
+- Better access to national health statistics  
 
 
-## Standardized Data Templates
 
-Health facilities share data using structured **Data Templates** developed from:
+## Core Capabilities of HDU
 
-- Ministry of Health HMIS (MTUHA) registers  
-- National routine reporting variables  
+The HDU platform provides several core capabilities:
 
-These templates:
+- Standardized health data exchange across systems  
+- Validation and processing of health data from facilities  
+- Secure storage of patient-level health records  
+- Aggregation of health data for national reporting  
+- Integration with national systems such as **DHIS2** and surveillance platforms  
 
-- Standardize service capture  
-- Ensure system-to-system consistency  
-- Enable automated aggregation and reporting  
-
-Each payload may include:
-
-- Client demographics  
-- Clinical services  
-- Laboratory results  
-- Encounters across OPD, IPD, Laboratory, and other service points  
-
-
-
-## How Data Flows Through the HDU
-
-**Workflow:**
-
-```text
-EMR/EHR → Health Information Mediator (HIM) → HDU API → Beneficiary Systems
-```
-
-## Step-by-Step Flow
-
-1. EMR/EHR systems generate standardized Data Template payloads  
-2. Payloads are sent to the Health Information Mediator (HIM)  
-3. HIM validates and forwards data to the HDU API  
-4. HDU processes, stores, aggregates, and routes data to:
-
-   - HMIS DHIS2  
-   - eIDSR  
-   - Other beneficiary systems  
-
-
-
-## Core Functions of the HDU API
-
-The HDU API supports:
-
-- Client registration across facilities  
-- Storage of health records  
-- Cross-facility health record retrieval  
-- Data validation and standardization  
-- Automated aggregation and reporting  
-- Secure system-to-system exchange  
-
-
-
-## Scope of This Documentation
-
-### Supported Systems
-
-- EMR/EHR systems  
-- Client-level health applications  
-- Laboratory Information Systems (LIMS)  
-
-### Covered Topics
-
-- Data template structure  
-- Client Registry integration  
-- Shared Health Records integration  
-- Standardized codes and mappings  
-- API workflows and endpoints  
-- Error handling and validation  
-- Authentication and security  
-
-
-
- 
-
-
-
-
-
-
+Through these capabilities, HDU supports more efficient health data management and improved use of health information for planning and decision-making.

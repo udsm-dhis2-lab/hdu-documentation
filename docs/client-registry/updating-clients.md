@@ -1,46 +1,112 @@
-# Updating Client Records
+# Difference Between Client Registry DataTemplate API and DataTemplate API
 
-The Client Registry allows existing client records to be updated either by replacing the full client profile or by modifying specific attributes only.  
+The HDU platform provides two ways of submitting data:
 
-Both update operations require the unique client identifier (`hcr-id`) together with the identifier type (`idType`) as part of the request.
+- Client Registry DataTemplate API  
+- General DataTemplate API  
 
+Although both use a DataTemplate structure, they serve different purposes within the HDU ecosystem.
 
-
-## Update Full Client Record (PUT)
-
-This operation is used to replace the entire client profile with updated information. It is recommended when multiple demographic or administrative fields have changed.
-
-**Method:** PUT  
-**Endpoint:** `/api/v1/hduApi/cr/clients/{hcr-id}?idType={idType}` 
-**Description:**  
-Updates the existing client record by submitting a complete client object.
-
-**Common use cases include:**
-- Updating demographic information  
-- Correcting identifiers  
-- Modifying address or contact details  
+Understanding the difference is essential for implementing correct and efficient integrations.
 
 
 
-## Update Specific Client Attributes (PATCH)
+## Client Registry DataTemplate API
 
-This operation is used to update only selected fields of a client record without replacing the full profile.
+The Client Registry DataTemplate API is specifically designed for managing client (patient) demographic information.
 
-**Method:** PATCH  
-**Endpoint:** `/api/v1/hduApi/cr/clients/{hcr-id}?idType={idType}`
+It is used to:
 
-**Description:**  
-Updates specific attributes of the existing client record.
+- Register new clients  
+- Update existing client information  
+- Maintain a consistent and unique client identity across systems  
 
-**Common use cases include:**
-- Updating phone number or email  
-- Adding a new identifier  
-- Correcting a single demographic field  
+### Key Characteristics
+
+- Focuses on `demographicDetails` and identifiers  
+- Used for CREATE and UPDATE operations on clients  
+- Returns a `clientIdentifier` for linking records  
+- Ensures deduplication and identity management  
+
+### Typical Use Case
+
+- Registering a new patient before sending clinical data  
+- Updating patient demographic details  
 
 
 
-### Implementation Notes
+## General DataTemplate API
 
-- The `hcr-id` represents the unique client identifier assigned by the HDU Client Registry.  
-- The `idType` parameter specifies the identifier type being used (e.g. MRN, HCRCODE, NIDA).  
-- Authentication is required for all update operations using Basic Authentication.
+The General DataTemplate API is used to submit clinical and service delivery data.
+
+It is responsible for:
+
+- Capturing visit information  
+- Recording diagnoses, treatments, and lab results  
+- Supporting Shared Health Records and other modules  
+
+### Key Characteristics
+
+- Uses multiple blocks such as:  
+  - `visitDetails`  
+  - `clinicalInformation`  
+  - `diagnosisDetails`  
+  - `laboratoryRequestDetails`  
+- Supports full payload submission and trigger-based updates  
+- Handles clinical workflows and service data  
+
+### Typical Use Case
+
+- Submitting a patient visit  
+- Sending laboratory results  
+- Recording diagnosis and treatment  
+
+
+
+## Key Differences
+
+| Feature | Client Registry DataTemplate API | General DataTemplate API |
+|--------|----------------------------------|---------------------------|
+| Purpose | Manage client identity | Submit clinical and visit data |
+| Main Block | demographicDetails | visitDetails + clinical blocks |
+| Operations | Create and update clients | Create and update visits and records |
+| Output | clientIdentifier | visit and clinical records |
+| Usage | First step in integration | After client is registered |
+
+
+
+## Recommended Approach
+
+⚠️ **Important Guidance for Developers**
+
+It is strongly recommended to use the:
+
+👉 **Client Registry DataTemplate API for all client-related operations (CREATE, UPDATE)**
+
+This ensures:
+
+- Proper client identification  
+- Avoidance of duplicate records  
+- Consistency across all integrated systems  
+
+After registering the client, developers should use the:
+
+👉 **General DataTemplate API to submit Shared Health Records and clinical data**
+
+## Summary Workflow
+
+A correct integration should follow this sequence:
+```text
+1. Register Client → Client Registry API
+2. Receive clientIdentifier
+3. Submit Visit Data → DataTemplate API
+4. Update records using visitId when needed
+```
+
+## Final Note
+
+Using the correct API for the correct purpose ensures:
+
+- Data consistency across systems
+- Reliable patient tracking
+- Accurate reporting and analytics

@@ -1,0 +1,26 @@
+Workstream,Activity,Week 1,Week 2,Week 3,Week 4,Week 5,Week 6,Week 7,Week 8,Week 9,Week 10
+
+Data Migration,Collect legacy cancer data,X,,,,,,,,,
+Data Migration,Review & define standard format,X,X,,,,,,,,
+Data Migration,Clean and standardize data,,X,X,,,,,,,
+Data Migration,Map facilities and values,,,X,X,,,,,,
+Data Migration,Develop migration tools,,,,X,X,X,,,,,
+Data Migration,Prepare import datasets,,,,,X,X,,,,,
+Data Migration,Import data & verify,,,,,,X,X,X,,,
+Data Migration,Resolve discrepancies & finalize,,,,,,,X,X,X,,
+
+Indicators,Requirements gathering,X,,,,,,,,,
+Indicators,Define indicators,X,X,,,,,,,,
+Indicators,Map CanReg5 outputs,,X,X,,,,,,,
+Indicators,Develop indicator matrix,,,X,X,,,,,,
+Indicators,Configure indicators,,,,X,X,,,,,
+Indicators,Validate indicators,,,,,,X,X,,,
+Indicators,UAT,,,,,,,X,X,,
+
+Dashboards,Define dashboard requirements,,,X,X,,,,,,
+Dashboards,Develop dashboards,,,,X,X,,,,,
+Dashboards,Configure filters & access,,,,,X,X,,,,,
+Dashboards,Test and refine dashboards,,,,,,X,X,,,
+Dashboards,Deploy dashboards,,,,,,,X,X,,
+Dashboards,Documentation & user guides,,,,,,,X,X,,
+Dashboards,Training & support,,,,,,,,X,X

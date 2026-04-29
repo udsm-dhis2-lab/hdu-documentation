@@ -1,81 +1,84 @@
-# Overview
+# Documentation Overview
 
+This documentation is designed to support **system developers and implementers** who need to integrate healthcare applications with the **Health Data Universal (HDU)** platform.
 
-![Figure 1: HDU Conceptual Model](img_1.png)
+It provides the technical information required to connect facility-level systems with the national digital health ecosystem through the **HDU API**.
 
+The documentation explains how to:
 
-The **Health Data Universal (HDU) API** allows receiving data from health facilities, both public and private.  
-The HDU API is composed of four major modules:
-
-- Client Registry (CR)
-- Shared Health Records (SHR)
-- Integration Module
-- Dashboard Module
-
-Data sharing from health facilities is facilitated by a structured data format called **Data Template** that was created from Ministry of Health HMIS (MTUHA) registers’ variables used by all public and private health facilities.
-
-To share data, a health facility EMR/EHR generates a payload containing patients or clients with services provided across different service delivery points (e.g. IPD, OPD, Laboratory). This payload follows the Data Template standard and is sent to the **Health Information Mediator (HIM)**, which then forwards it to the HDU API system.
-
-The HDU API system handles the following core functions:
-
-- Client registration across health facilities
-- Storage of health records
-- Enabling facilities to retrieve health records across different health facilities
-
-This documention contains technical specifications to support EMRs and other client-level health-related systems to integrate with national-level systems such as **HMIS-DHIS2**, **eIDSR**, and other beneficiary systems.
-
-## Scope of This Documentation
-
-This document provides technical integration guidance for the following systems:
-
-- EMR/EHR systems
-- Client-level health systems
-- Laboratory Information Systems (LIMS)
-
-The scope of this documentation includes:
-
-- Data template structure and usage
-- Client Registry integration
-- Shared Health Records integration
-- Standardized codes usage
-- Error handling and validation
-
-## Getting Started
-
-### Prerequisite Knowledge
-
-To successfully integrate with the HDU API, implementers are expected to have knowledge of:
-
-- RESTful APIs
-- JSON payload structures
-- HTTP request methods (GET, POST, PUT, PATCH)
-- Health information systems workflows
-- Facility-based health data capture
-
-### Integration Workflow
-
-The integration workflow follows the sequence below:
-
-**EMR/EHR → Health Information Mediator (HIM) → HDU API → Beneficiary Systems**
-
-EMR/EHR systems generate data using standardized Data Templates. These templates are sent via Web APIs to the Health Information Mediator (HIM). The HIM forwards validated payloads to the HDU API Core for processing, storage, aggregation, and onward transmission to national systems.
-
-## Authentication
-
-All HDU API endpoints are secured to ensure authorized access to health data. Integrating systems are required to authenticate every request before interacting with the API.
-
-Currently, the HDU API uses **Basic Authentication**. Credentials are issued to each integrating system and must be included in the request headers for every API call.
-
-### Supported Authentication Methods
-
-The HDU API is designed to support multiple authentication mechanisms, including:
-
-- Basic Authentication  
-- Token-based Authentication  
-- Bearer Authentication  
-- Certificate-based Authentication  
-
-At present, **Basic Authentication** is the active and officially supported method for all integrations. Other authentication mechanisms may be introduced in future releases.
+- Understand the **HDU interoperability architecture**
+- Use **Data Templates** for structured data exchange
+- Integrate systems with the **HDU API**
+- Submit and retrieve health data through standardized APIs
+- Implement **Client Registry** and **Shared Health Records** functionality
+- Use standardized health coding systems such as **ICD** and **LOINC**
 
 
 
+# Who Should Use This Documentation
+
+This documentation is primarily intended for professionals responsible for integrating health information systems with the HDU platform, including:
+
+- Software developers integrating **EMR/EHR systems**
+- System integrators working with national health platforms
+- Digital health solution providers
+- Health information system administrators
+- Technical teams supporting **health data interoperability**
+
+
+
+# Systems That Can Integrate with HDU
+
+The HDU platform supports integration with various types of healthcare information systems, including:
+
+- **Electronic Medical Record (EMR)** systems
+- **Electronic Health Record (EHR)** systems
+- **Laboratory Information Systems (LIMS)**
+- Specialized clinical systems
+- Public health reporting systems
+
+These systems generate **structured health data** that can be transmitted to the HDU platform using standardized **Data Templates**.
+
+
+
+# What You Will Learn in This Documentation
+
+The sections in this documentation guide developers through the **full integration process**.
+
+Key topics covered include:
+
+- Getting started with the **HDU API**
+- Understanding the **Data Template structure**
+- Working with **Data Template blocks**
+- Sending data to the **HDU platform**
+- Integrating **Client Registry** and **Shared Health Records**
+- Using standardized **coding systems**
+- Handling **API responses and validation errors**
+
+
+
+# How to Use This Documentation
+
+Developers integrating with HDU are encouraged to read the documentation in the following order:
+
+1. **Gettting Started** – Understand prerequisites, authentication, and integration workflow.  
+2. **DataTemplate Overview** – Learn how health data is structured for transmission.  
+3. **Core Data Sending APIs** – Understand the main APIs used to send health data.  
+4. **Client Registry and Shared Records** – Learn how patient data is managed across facilities.  
+5. **Submitting Data** – Review examples of sending structured health data payloads.  
+6. **Standardized Codes Reference** – Understand coding standards used in HDU integrations.
+
+Following this sequence will help implementers understand both the **conceptual model** and the **technical integration process**.
+
+
+
+# Next Section
+
+The next section, **Gettting Started**, introduces the basic requirements and workflow needed to begin integrating systems with the **HDU API**.
+
+It covers:
+
+- Prerequisite knowledge
+- The **HDU integration workflow**
+- Authentication requirements
+- Initial interaction with the **API**

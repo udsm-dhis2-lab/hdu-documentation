@@ -1,148 +1,138 @@
-# Searching and Retrieving Clients
+# Updating Client and Shared Health Records
 
-This section explains how to retrieve client records using identifiers and filtering parameters.
+Health information systems often need to update previously submitted data. This may occur when correcting demographic information, updating visit records, or adding new clinical data after a consultation.
 
-### Description
+The HDU API supports updating records through two main approaches:
 
-* **Purpose:**  
-  Retrieves client demographic and facility-related information from the Client Registry (CR).  
-* **Usage context:**  
-  Used for searching, validating, and viewing client profiles across systems.
+- Updating client demographic information  
+- Updating or adding shared health records  
 
-
-
-### Message Type
-
-* **Format:** `JSON`  
-* **Description:**  
-  Response and request payloads are exchanged in JSON format.
+These updates ensure that health data remains accurate, complete, and up to date across integrated systems.
 
 
 
-### Message Category
+## Updating Client Demographic Information
 
-* **Category:** `DATA`  
-* **Description:**  
-  Indicates transactional client data retrieval.
+Client demographic information stored in the Client Registry can be updated if changes occur or corrections are needed.
 
+Common scenarios include:
 
+- Correcting spelling errors in names  
+- Updating contact information  
+- Updating marital status or occupation  
+- Updating identification details  
 
-### Request Type
+Updates can be performed using the Client Registry update endpoints.
 
-* **Method:** `GET`  
-* **Description:**  
-  Fetches client records based on provided query parameters.
+### Example Endpoints
 
+| Method | Endpoint                                             | Description                       |
+| ------ | ---------------------------------------------------- | --------------------------------- |
+| PUT    | `/api/v1/hduApi/cr/clients/{hcr-id}?idType={idType}` | Update the full client profile    |
+| PATCH  | `/api/v1/hduApi/cr/clients/{hcr-id}?idType={idType}` | Update specific client attributes |
 
-
-### API Endpoint
-
-* **Base URL:**  
-  `/api/v1/hduApi/cr/clients`
-
-
-
-### Query Parameters
-
-| Parameter | Description |
-|----------|-------------|
-| `id` | Primary identifier used to retrieve a specific client |
-| `idType` | Type of identifier used with `id` (e.g., MRN, NIDA) |
-| `gender` | Filters clients by gender |
-| `hfrCode` | Filters clients by health facility code |
-
-
-**Priority rule:**  
-If `id` and `idType` are provided, they are used first for retrieval.
-
-
-### Authentication
-
-* **Type:** `Basic Authentication`  
-* **Description:**  
-  Requires valid credentials to access client registry data.
-
-
-## Response [If the id is specified, response will be the matched client]
+### Example Update Payload
 ```json
 {
- "pager": {
-   "page": 0,
-   "totalPages": 1,
-   "total": 1
- },
- "results": [
-   {
-     "facilityDetails": {
-       "code": "109601-5",
-       "name": "Sample Health Facility"
-     },
-     "demographicDetails": {
-    "mrn": "109601-5-029022102/2023",
-    "firstName": "Jumanne",
-    "middleName": "",
-    "lastName": "Haule",
-    "dateOfBirth": "1998-02-15",
-    "gender": "male",
-    "phoneNumbers": [
-      "+255787656431"
-    ],
-    "emails": [
-      "test@moh.go.tz"
-    ],
-    "occupation": null,
-    "maritalStatus": null,
-    "nationality": null,
-    "addresses": [
-      {
-        "village": null,
-        "ward": null,
-        "district": "Ubungo",
-        "region": "Dar es Salaam",
-        "country": "Tanzania",
-        "category": "Permanent"
-      }
-    ],
-    "identifiers": [
-      {
-        "type": "MRN",
-        "id": "109601-5-029022102/2023",
-        "preferred": true
-      },
-      {
-        "type": "NIDA",
-        "id": "19980215-03453-00004-21",
-        "preferred": false
-      }
-    ],
-    "contactPeople": [
-      {
-        "firstName": "Richard",
-        "lastName": "Haule",
-        "phoneNumbers": [
-          "+255767652234"
-        ],
-        "relationShip": "Father"
-      }
-    ],
-    "paymentDetails": [
-      {
-        "shortName": "NHIF",
-        "type": "INSURANCE",
-        "insuranceCode": "INS001",
-        "name": "National Health Insurance Fund",
-        "insuranceId": "7383738389393",
-        "policyNumber": null,
-        "groupNumber": null
-      }
-    ]
+  "demographicDetails": {
+    "firstName": "Amina",
+    "lastName": "Mussa",
+    "maritalStatus": "Married"
   }
-
-
-   }
- ]
 }
 ```
+### Example Response
+```json
+{
+  "status": "SUCCESS",
+  "statusCode": 200,
+  "message": "Client record updated successfully"
+}
+```
+## Updating Existing Shared Health Records
+
+Shared health records can also be updated when additional information becomes available for an existing visit.
+
+To update an existing record, the integrating system must send the same visit identifier (`visitDetails.visitId`) used during the original submission.
+
+This allows the HDU system to identify and update the correct visit record.
+
+### Example Upload Payload
+```json
+{
+  "facilityDetails": {
+    "facilityCode": "109601"
+  },
+  "listGrid": [
+    {
+      "visitDetails": {
+        "visitId": "VIS-20001"
+      },
+      "diagnosisDetails": {
+        "diagnosisCode": "J18",
+        "diagnosisName": "Pneumonia"
+      }
+    }
+  ]
+}
+```
+### Example Response
+```json
+{
+  "status": "SUCCESS",
+  "statusCode": 200,
+  "updatedVisits": 1,
+  "message": "Shared health record updated successfully"
+}
+```
+
+## Adding New Shared Health Records
+
+In addition to updating existing visits, systems can also submit new clinical records for future visits.
+
+To do this, the system simply provides a new visit identifier in the `visitDetails` block. The HDU platform will treat the record as a new visit.
+
+
+### Example Payload
+```json
+{
+  "facilityDetails": {
+    "facilityCode": "109601"
+  },
+  "listGrid": [
+    {
+      "visitDetails": {
+        "visitId": "VIS-20002",
+        "visitDate": "2024-06-15"
+      },
+      "clinicalInformation": {
+        "chiefComplaint": "Headache"
+      }
+    }
+  ]
+}
+```
+
+### Example Response 
+```json
+{
+  "status": "SUCCESS",
+  "statusCode": 200,
+  "newVisits": 1,
+  "message": "New shared health record created"
+}
+```
+
+## Important Notes for Updates
+
+Developers should observe the following rules when updating records:
+
+- Use PUT when replacing the full client record.
+- Use PATCH when updating specific client attributes.
+- Use the same visit identifier to update an existing visit.
+- Use a new visit identifier to create a new clinical record.
+
+These practices ensure proper versioning and consistency of health records across integrated systems.
 
 
 
